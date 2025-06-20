@@ -891,7 +891,7 @@ class HSRDataConfig(BaseDataConfig):
         "action.head",
         "action.base"
     ]
-    language_keys = ["annotation.human.action.task_description"]
+    language_keys = ["annotation.human.task_description"]
     observation_indices = [0]
     action_indices = list(range(16))
 
