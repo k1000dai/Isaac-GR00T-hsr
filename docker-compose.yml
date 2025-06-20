@@ -10,7 +10,7 @@ services:
     privileged: true
     shm_size: '50gb'
     volumes:
-      - ${PWD}/../:/workspace
+      - ${PWD}:/workspace
       - ${DATASETS_PATH}:/root/datasets
       - /tmp/.x11-unix:/tmp/.x11-unix
     environment:
