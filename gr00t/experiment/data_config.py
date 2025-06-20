@@ -879,27 +879,17 @@ class AgibotGenie1DataConfig:
 class HSRDataConfig(BaseDataConfig):
     video_keys = ["video.head", "video.hand"]
     state_keys = [
-        "state.arm_lift_joint",
-        "state.arm_flex_joint",
-        "state.arm_roll_joint",
-        "state.wrist_flex_joint",
-        "state.wrist_roll_joint",
-        "state.hand_motor_joint",
-        "state.head_pan_joint",
-        "state.head_tilt_joint"
+        "state.arm",
+        "state.wrist",
+        "state.hand",
+        "state.head"
     ]
     action_keys = [
-        "action.arm_lift_joint",
-        "actin.arm_flex_joint",
-        "action.arm_roll_joint",
-        "action.wrist_flex_joint",
-        "action.wrist_roll_joint",
-        "action.hand_motor_joint",
-        "action.head_pan_joint",
-        "action.head_tilt_joint",
-        "action.base_x",
-        "action.base_y",
-        "action.base_t"
+        "action.arm",
+        "action.wrist",
+        "action.hand",
+        "action.head",
+        "action.base"
     ]
     language_keys = ["annotation.human.action.task_description"]
     observation_indices = [0]
