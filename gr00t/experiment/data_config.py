@@ -876,7 +876,40 @@ class AgibotGenie1DataConfig:
 
         return ComposedModalityTransform(transforms=transforms)
 
+class HSRDataConfig(BaseDataConfig):
+    video_keys = ["video.head", "video.hand"]
+    state_keys = [
+        "state.arm_lift_joint",
+        "state.arm_flex_joint",
+        "state.arm_roll_joint",
+        "state.wrist_flex_joint",
+        "state.wrist_roll_joint",
+        "state.hand_motor_joint",
+        "state.head_pan_joint",
+        "state.head_tilt_joint"
+    ]
+    action_keys = [
+        "action.arm_lift_joint",
+        "actin.arm_flex_joint",
+        "action.arm_roll_joint",
+        "action.wrist_flex_joint",
+        "action.wrist_roll_joint",
+        "action.hand_motor_joint",
+        "action.head_pan_joint",
+        "action.head_tilt_joint",
+        "action.base_x",
+        "action.base_y",
+        "action.base_t"
+    ]
+    language_keys = ["annotation.human.action.task_description"]
+    observation_indices = [0]
+    action_indices = list(range(16))
 
+    def modality_config(self) -> dict[str, ModalityConfig]:
+        return FourierGr1FullUpperBodyDataConfig().modality_config()
+
+    def transform(self) -> ModalityTransform:
+        return FourierGr1FullUpperBodyDataConfig().transform()
 ###########################################################################################
 
 DATA_CONFIG_MAP = {
@@ -892,4 +925,5 @@ DATA_CONFIG_MAP = {
     "unitree_g1_full_body": UnitreeG1FullBodyDataConfig(),
     "oxe_droid": OxeDroidDataConfig(),
     "agibot_genie1": AgibotGenie1DataConfig(),
+    "hsr" : HSRDataConfig(),  # Assuming HSRDataConfig is defined elsewhere
 }
