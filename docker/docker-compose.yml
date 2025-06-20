@@ -1,0 +1,24 @@
+services:
+  latest:
+    runtime: nvidia
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${USER}/gr00t-hsr:latest
+    container_name: gr00t-hsr
+    network_mode: host
+    privileged: true
+    shm_size: '50gb'
+    volumes:
+      - ${PWD}/../:/workspace
+      - ${DATASETS_PATH}:/root/datasets
+      - /tmp/.x11-unix:/tmp/.x11-unix
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - WANDB_API_KEY=${WANDB_API_KEY}
+      # Hack with HDF5 file locking
+      - HDF5_USE_FILE_LOCKING=FALSE
+      # For debugging with Hydra
+      - HYDRA_FULL_ERROR=1
+    command: /root/lerobot/docker/initialize-docker-container.sh
